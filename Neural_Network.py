@@ -54,7 +54,7 @@ loss.backward() # Backpropagate the error
 
 learning_rate = 0.01
 
-for parameter in net.parameters(): # Custom optimization loop(in lieu of torch.optim)
+for parameter in network.parameters(): # Custom optimization loop(in lieu of torch.optim)
 	parameter.data.sub_(parameter.grad.delta*learning_rate)
 
 
