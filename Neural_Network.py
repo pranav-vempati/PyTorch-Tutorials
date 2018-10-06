@@ -42,7 +42,7 @@ outputs = net(input)
 
 targets = torch.randn(10) # Randomly generated target tensor
 
-targets = target.view(1,-1)
+targets = targets.view(1,-1)
 
 loss_fn = nn.MSELoss()
 
