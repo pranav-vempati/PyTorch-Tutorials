@@ -15,8 +15,8 @@ class Network(nn.module):
 		self.fc2 = nn.Linear(120,84)
 		self.fc3 = nn.Linear(84,10)
 
-	def forward(self, fed_tensor):
-		# Max pool with 2x2 window
+	def forward(self,x):
+		x = F.max_pool2d(F.relu(self.conv1(x), (2,2)))
 		x = F.max_pool2d(F.relu(self.conv2(x)),2)
 		x = x.view(-1, self.num_flat_features(x))
 		x = F.relu(self.fc1(x))
@@ -38,7 +38,7 @@ network = Network()
 
 input = torch.randn(1,1,32,32)
 
-outputs = net(input)
+outputs = network(input)
 
 targets = torch.randn(10) # Randomly generated target tensor
 
