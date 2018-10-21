@@ -6,7 +6,7 @@ import torch.nn.Functional as F
 
 class Network(nn.module):
 
-	def__init__(self):
+	def __init__(self):
 		super().__init__()
 		self.conv1 = nn.Conv2d(1,6,5)
 		self.conv2 = nn.Conv2d(6,16,5)
