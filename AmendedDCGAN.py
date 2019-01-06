@@ -138,7 +138,7 @@ for epoch in range(epochs):
 
 		real_batch_error.backward()
 
-		latent_vector = torch.randn(data_batch_size, latent_vector_dim, 1,1, device = device) # Sample a tensor from a normal distribution
+		latent_vector = torch.randn(data_batch_size, latent_vector_dim, 1,1, device = device) # Sample a vector from a normal distribution
 
 		generator_fake_batch_outputs = generator(latent_vector)
 
