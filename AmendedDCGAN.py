@@ -1,5 +1,4 @@
-
-import argparse
+# A Deep Convolutional GAN(DCGAN) based on the implementation at https://github.com/pytorch/examples/blob/master/dcgan/main.py#L240. The network topology and hyperparameters differ from those prescribed in the original paper.  
 import os
 import random
 import torch
@@ -19,7 +18,7 @@ torch.manual_seed(manualSeed)
 
 dataroot = "dataFolder/CelebADataset"
 
-workers = 4
+workers = 4 # Number of parallel data loading processes
 
 batch_size = 128
 
@@ -96,7 +95,7 @@ class Discriminator(nn.Module):
 			nn.Sigmoid())
 
 	def forward(self, input):
-		return self.container(input)
+		return self.container(input) # Not optimized for CUDA tensors
 
 
 discriminator = Discriminator().to(device)
@@ -111,7 +110,7 @@ training_label = 1 # Labels originating from the training set, i.e. real
 
 generated_label = 0 # Fake labels
 
-discriminator_optimizer = optim.SGD(discriminator.parameters(), lr = 0.01) # Try SGD in the discriminator (even though this flies in the face of the paper's suggestions)
+discriminator_optimizer = optim.SGD(discriminator.parameters(), lr = 0.1) # Try SGD in the discriminator (even though this flies in the face of the paper's suggestions)
 
 generator_optimizer = optim.Adam(generator.parameters(), lr = 0.0002, betas = (0.5, 0.999)) # Adam in the generator
 
