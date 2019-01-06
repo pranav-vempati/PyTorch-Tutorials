@@ -55,7 +55,7 @@ class Generator(nn.Module):
 		self.container = nn.Sequential(nn.ConvTranspose2d(latent_vector_dim, generator_feature_maps*8, 4,1,0, bias = False), 
 			nn.BatchNorm2d(generator_feature_maps*8), 
 			nn.ReLU(True),
-			nn.ConvTranspose2d(generator_feature_maps*8, generator_feature_maps*4, 4, 2, 1, bias = False),
+			nn.ConvTranspose2d(generator_feature_maps*8, generator_feature_maps*4, 4, 2, 1, bias = False), # Transposed convolutional layers perform spatial upsampling
 			nn.BatchNorm2d(generator_feature_maps*4),
 			nn.ReLU(True),
 			nn.ConvTranspose2d(generator_feature_maps*4, generator_feature_maps*2, 4,2,1, bias = False),
@@ -85,7 +85,7 @@ class Discriminator(nn.Module):
 			nn.Conv2d(discriminator_feature_maps, discriminator_feature_maps*2, 4,2,1, bias = False),
 			nn.BatchNorm2d(discriminator_feature_maps*2), 
 			nn.LeakyReLU(0.2, inplace = True), 
-			nn.Conv2d(discriminator_feature_maps*2, discriminator_feature_maps*4, 4,2,1, bias = False), 
+			nn.Conv2d(discriminator_feature_maps*2, discriminator_feature_maps*4, 4,2,1, bias = False), # Spatial downsampling
 			nn.BatchNorm2d(discriminator_feature_maps*4), 
 			nn.LeakyReLU(0.2, inplace = True), 
 			nn.Conv2d(discriminator_feature_maps*4, discriminator_feature_maps*8, 4,2,1, bias = False)
